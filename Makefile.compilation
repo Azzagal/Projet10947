@@ -1,0 +1,9 @@
+CC=gcc
+LD=gcc
+CFLAGS=--std=c99 --pedantic -Wall -Wextra -Wmissing-prototypes
+LDFLAGS=
+LATEX=pdflatex
+EXEC=filtrer
+TAR=tar
+TARNAME=3
+RAPPORTSOURCE=template_rapport
