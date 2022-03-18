@@ -72,14 +72,14 @@
 
 %%%%%%%%%%%%%%%%% TITRE %%%%%%%%%%%%%%%%
 % Complétez et décommentez les définitions de macros suivantes :
-\newcommand{\intitule}{Milestone 1}
+\newcommand{\intitule}{Rapport Projet 1}
 \newcommand{\GrNbr}{23}
 \newcommand{\PrenomUN}{Andrew}
 \newcommand{\NomUN}{Willems}
 \newcommand{\PrenomDEUX}{Pierre}
 \newcommand{\NomDEUX}{Lorenzen}
 % Décommentez ceci si vous voulez une table des matières :
-% \renewcommand{\tablemat}{\tableofcontents}
+\renewcommand{\tablemat}{\tableofcontents}
 
 %%%%%%%% ZONE PROTÉGÉE : MODIFIEZ UNE DES DIX PROCHAINES %%%%%%%%
 %%%%%%%%            LIGNES POUR PERDRE 2 PTS.            %%%%%%%%
@@ -97,56 +97,95 @@
 %%%%%%%%%%%%%%%% RAPPORT %%%%%%%%%%%%%%%
 % Écrivez votre rapport ci-dessous.
 
-\section{Objetctif}
+\section{Description du problème}
 
-L'objectif de ce projet est de crèer un fonction qui filtre un tableau d'entiers de taille N
-(N$\geq$0). Le filtrage s'oppère de la façon suivante : si les éléments respectent une certaine 
-propriété alors ils sont placé au début du tableau.  Les autres éléments sont mis à $0$ sinon.
+Il est demandé de filtrer un tableau d'entiers par rapport à une certaine propriété \textit{p}.
 
-\section{Formalisation et notation}
+On peut représenter le problème comme suit:
 
-Un tableau T à n valeur entières est filtré par rapport à une certaine propriété, notation 
-\textit{filtrer(T,n)}, ssi :
-$ \forall i , 0\leq i\leq n , $\textit{propriete}$(T[i])$. \\
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!h]
+\centering
+\begin{tabular}{lllllllllllll}
+\multicolumn{1}{l|}{}   & 0                        &                          &                          &                          &                          & \multicolumn{1}{r|}{i}                        &                          &                          &                          &                          &                          & \multicolumn{1}{r|}{N-1}                      \\ \cline{2-13} 
+\multicolumn{1}{r|}{T:} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \multicolumn{1}{l|}{\cellcolor[HTML]{3531FF}} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \multicolumn{1}{l|}{\cellcolor[HTML]{9A0000}} \\ \cline{2-13} 
+                        &                          &                          &                          &                          &                          &                                               &                          &                          &                          &                          &                          &                                              
+\end{tabular}
+\end{table}
 
-Le filtrage implique que le tableau est modifié mais conserve certaine valeurs 
-qui ont changés de position. \\
+Avec la zone {\color[HTML]{3531FF}bleu} qui concerne la zone filtrée du tableau(A), la taille de la zone filtrée(B) et tout les éléments qui s'y trouve se trouvait dans le même ordre dans le tableau initiale(c). La zone {\color[HTML]{9A0000} brune} concerne la zone non filtrée ce qui veut dire que la zone est remplie de 0(D).
 
-Notion de \underline{\textbf{permutation}}: Soient deux suites $L$ et $L'$. $L$ est une 
-\textit{permuation} de $L'$ (notation $L$ \textit{perm} $L'$) ssi : 
-$\exists i_1,i_2,...,i_n$ tel que $\{i_1,i_2,...,i_n\}=\{1,2,...,n\}$ avec\\ 
-$L = (l_1,l_2,...,l_n)$ et $L'=(l_i1,l_i2,...,l_in)$
+\section{Spécification des prédicats}
 
-\section{Définition du problème}
+    \subsection{Spécification du prédicat B}
 
-\begin{itemize}
-
-  \item[$-$] Input
+    \begin{enumerate}
+        \item Objets Utilisés
             \begin{itemize}
-
-                \item[$\ast$] T, un tableau à valeur entières
-
-                \item[$\ast$] n , la taille du tableau T
-
+                \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                \item[$\star$] p: Une certaine propriété. 
             \end{itemize}
 
-  \item[$-$] Output
+        \item Signature \\
+            \textit{TailleZoneFiltree(T,N,p)}
+
+        \item Spécification\\
+            \textit{TailleZoneFiltree(T,N,p)}$\equiv \# i, 0\leq i < N, p(T[i])$
+    \end{enumerate}
+
+    \subsection{Spécification du prédicat A}
+
+    \begin{enumerate}
+        \item Objets Utilisés
             \begin{itemize}
-
-                \item[$\ast$] Le tableau T est filtré , \textit{filtrer(T,n)}
-
+                \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                \item[$\star$] taille: taille de la zone filtrée.
+                \item[$\star$] p: Une certaine propriété. 
             \end{itemize}
 
-  \item[$-$] Objets utilisés
+        \item Signature \\
+            \textit{ZoneFiltree(T,p,taille)}
+
+        \item Spécification\\
+            \textit{ZoneFiltree(T,p,taille)}$\equiv \forall i, 0\leq i < taille, p(T[i])$
+    \end{enumerate}
+
+    \subsection{Spécification du prédicat C}
+
+    \begin{enumerate}
+        \item Objets Utilisés
             \begin{itemize}
-
-                \item[$\ast$] T, un tableau à valeur entières
-
-                \item[$\ast$] n , la taille du tableau T
-
-                \item[$\ast$] indice , un nombre entier qui retient la position courrante de où doit
-                                s'éffectuer la permutation
+                \item[$\star$] T$_0$: Le tableau T avant modification.
+                \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                \item[$\star$] taille: taille de la zone filtrée. 
             \end{itemize}
-\end{itemize}
+
+        \item Signature \\
+            \textit{LienTableau(T$_0$,T,N,taille)}
+
+        \item Spécification\\
+            \textit{LienTableau(T$_0$,T,N,taille)}$\equiv (\forall i, 1\leq i < taille, (\exists j, 0\leq j < N, T_0[j] = T[i]) \wedge (\exists k, 0\leq k < j, T_0[k] = T[i-1]) )$
+    \end{enumerate}
+
+    \subsection{Spécification du prédicat D}
+
+    \begin{enumerate}
+        \item Objets Utilisés
+            \begin{itemize}
+                \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                \item[$\star$] taille: taille de la zone filtrée. 
+            \end{itemize}
+
+        \item Signature \\
+            \textit{ZoneNonFiltree(T,N,taille)}
+
+        \item Spécification\\
+            \textit{ZoneNonFiltree(T,N,taille)}$\equiv \forall i, taille < i < N, T[i]=0$
+    \end{enumerate}
 
 \end{document}
