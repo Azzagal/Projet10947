@@ -188,4 +188,28 @@ Avec la zone {\color[HTML]{3531FF}bleu} qui concerne la zone filtrée du tableau
             \textit{ZoneNonFiltree(T,N,taille)}$\equiv \forall i, taille < i < N, T[i]=0$
     \end{enumerate}
 
+\section{Invariant}
+    \subsection{Invariant graphique}
+
+    Avec la spécification des prédicats ci dessus on peut trouver un invariant graphique.
+    % Please add the following required packages to your document preamble:
+    % \usepackage[table,xcdraw]{xcolor}
+    % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    \begin{table}[!h]
+    \centering
+    \begin{tabular}{llllrlllllllr}
+    \multicolumn{1}{l|}{}   & \multicolumn{3}{l}{0}                                                                & \multicolumn{1}{r|}{place}                      & \multicolumn{6}{l|}{}                                                & i                 & \multicolumn{1}{r|}{N-1}                \\ \cline{2-13} 
+    \multicolumn{1}{r|}{T:} & \multicolumn{4}{l}{\cellcolor[HTML]{32CB00}}                                                                                           & \multicolumn{6}{l|}{\cellcolor[HTML]{3531FF}}                        & \multicolumn{2}{l}{\cellcolor[HTML]{9A0000}}                \\ \cline{2-13} 
+                            & \multicolumn{4}{l}{{\color[HTML]{32CB00} \begin{tabular}[c]{@{}l@{}}ZoneFiltree(T,p,place) \\ $\wedge$LienTableau(T$_0$,T,i,place)\end{tabular}}} & \multicolumn{6}{l}{{\color[HTML]{3531FF} ZoneNonFiltree(T,i,place)}} & \multicolumn{2}{l}{{\color[HTML]{9A0000} encore à traiter}}
+    \end{tabular}
+    \end{table}
+
+    Avec $place = TailleZoneFiltree(T,i,p)$.
+
+    \subsection{Invariant formel}
+
+    De l'invariant graphique on peut en dériver l'invariant formel:
+
+    $\textsc{Inv} \equiv \, N = N_0 \, \wedge \, 0 \leq i \leq N-1 \, \wedge  \,place = TailleZoneFiltree(T,i,p) \, \wedge \, ZoneFiltree(T,p,place) \, \wedge \, LienTableau(T_0,T,i,place) \, \wedge \, ZoneNon Filtree(T,i,place)$
+
 \end{document}
