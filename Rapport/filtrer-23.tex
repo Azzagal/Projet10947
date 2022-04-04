@@ -99,37 +99,37 @@
 
 \section{Description du problème}
 
-Il est demandé de filtrer un tableau d'entiers par rapport à une certaine propriété \textit{p}.
+    Il est demandé de filtrer un tableau d'entiers par rapport à une certaine propriété \textit{p}.
 
-On peut représenter le problème comme suit:
+    On peut représenter le problème comme suit:
 
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[!h]
-\centering
-\begin{tabular}{lllllllllllll}
-\multicolumn{1}{l|}{}   & 0                        &                          &                          &                          &                          & \multicolumn{1}{r|}{i}                        &                          &                          &                          &                          &                          & \multicolumn{1}{r|}{N-1}                      \\ \cline{2-13} 
-\multicolumn{1}{r|}{T:} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \multicolumn{1}{l|}{\cellcolor[HTML]{3531FF}} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \multicolumn{1}{l|}{\cellcolor[HTML]{9A0000}} \\ \cline{2-13} 
-                        &                          &                          &                          &                          &                          &                                               &                          &                          &                          &                          &                          &                                              
-\end{tabular}
-\end{table}
+    % Please add the following required packages to your document preamble:
+    % \usepackage[table,xcdraw]{xcolor}
+    % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    \begin{table}[!h]
+    \centering
+    \begin{tabular}{lllllllllllll}
+    \multicolumn{1}{l|}{}   & 0                        &                          &                          &                          &                          & \multicolumn{1}{r|}{i}                        &                          &                          &                          &                          &                          & \multicolumn{1}{r|}{N-1}                      \\ \cline{2-13} 
+    \multicolumn{1}{r|}{T:} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \multicolumn{1}{l|}{\cellcolor[HTML]{3531FF}} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \multicolumn{1}{l|}{\cellcolor[HTML]{9A0000}} \\ \cline{2-13} 
+                            &                          &                          &                          &                          &                          &                                               &                          &                          &                          &                          &                          &                                              
+    \end{tabular}
+    \end{table}
 
-Avec la zone {\color[HTML]{3531FF}bleu} qui concerne la zone filtrée du tableau(A), la taille de la zone filtrée(B) et tout les éléments qui s'y trouve se trouvait dans le même ordre dans le tableau initiale(C). La zone {\color[HTML]{9A0000} brune} concerne la zone non filtrée ce qui veut dire que la zone est remplie de 0(D).
+    Avec la zone {\color[HTML]{3531FF}bleu} qui concerne la zone filtrée du tableau(A), la taille de la zone filtrée(B) et tout les éléments qui s'y trouve se trouvait dans le même ordre dans le tableau initiale(C). La zone {\color[HTML]{9A0000} brune} concerne la zone non filtrée ce qui veut dire que la zone est remplie de 0(D).
 
 \section{Découpe en sous-problème}
 
-Pour avoir plus de facilité à résoudre le problème nous pouvons le séparer en 2 sous-problèmes.\\
-Le premier sous-problème étant le problème principal: Filtrer le tableau par rapport à une certaine propriété \textit{p}.
-Les éléments respectant cette propriété sont à l'avant du tableau et dans le même ordre que dans le tableau initiale.
-Les éléments ne respectant pas la propriété sont placé en bout de tableau et leur valuer est mise à 0.\\
-Le deuxième sous-problème est la permutation de 2 éléments d'un même tableau sans changer leur valeur.
+    Pour avoir plus de facilité à résoudre le problème nous pouvons le séparer en 2 sous-problèmes.\\
+    Le premier sous-problème étant le problème principal: Filtrer le tableau par rapport à une certaine propriété \textit{p}.
+    Les éléments respectant cette propriété sont à l'avant du tableau et dans le même ordre que dans le tableau initiale.
+    Les éléments ne respectant pas la propriété sont placé en bout de tableau et leur valuer est mise à 0.\\
+    Le deuxième sous-problème est la permutation de 2 éléments d'un même tableau sans changer leur valeur.
 
-\subsection{Relation entre les sous-problème}
+    \subsection{Relation entre les sous-problème}
 
-\[
-    SP_2 \subset SP_1
-\]
+    \[
+        SP_2 \subset SP_1
+    \]
 \section{Sous-problème 2}
     Nous allons commencer par définir un prédicat avec leur objets utilisés et une notation
     pour pouvoir décrire ce sous-problème plus facilement.
