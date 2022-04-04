@@ -15,6 +15,11 @@
  * @pre: /
  * @post: test = p(x)
  */
-int test(int x);
+int test(int x){
+    if(x>=5)
+        return 1;
+    else    
+        return 0;
+}
 
 #endif

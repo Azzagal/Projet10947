@@ -1,0 +1,430 @@
+\documentclass[a4paper, 11pt, oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{array}
+\usepackage{shortvrb}
+\usepackage{listings}
+\usepackage[fleqn]{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{graphicx}             % import, scale, and rotate graphics
+\usepackage{subfigure}            % group figures
+\usepackage{alltt}
+\usepackage{url}
+\usepackage{indentfirst}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+
+% Change le nom par défaut des listing
+\renewcommand{\lstlistingname}{Extrait de Code}
+
+% Change la police des titres pour convenir à votre seul lecteur
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape}
+% Idem pour la table des matière.
+\usepackage[nottoc,notlof,notlot]{tocbibind}
+\usepackage[titles,subfigure]{tocloft}
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape}
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\newcommand{\coms}[1]{\textcolor{MidnightBlue}{#1}}
+
+\lstset{
+    language=C, % Utilisation du langage C
+    commentstyle={\color{MidnightBlue}}, % Couleur des commentaires
+    frame=single, % Entoure le code d'un joli cadre
+    rulecolor=\color{black}, % Couleur de la ligne qui forme le cadre
+    stringstyle=\color{RawSienna}, % Couleur des chaines de caractères
+    numbers=left, % Ajoute une numérotation des lignes à gauche
+    numbersep=5pt, % Distance entre les numérots de lignes et le code
+    numberstyle=\tiny\color{mygray}, % Couleur des numéros de lignes
+    basicstyle=\tt\footnotesize,
+    tabsize=3, % Largeur des tabulations par défaut
+    keywordstyle=\tt\bf\footnotesize\color{Sepia}, % Style des mots-clés
+    extendedchars=true,
+    captionpos=b, % sets the caption-position to bottom
+    texcl=true, % Commentaires sur une ligne interprétés en Latex
+    showstringspaces=false, % Ne montre pas les espace dans les chaines de caractères
+    escapeinside={(>}{<)}, % Permet de mettre du latex entre des <( et )>.
+    inputencoding=utf8,
+    literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\euro}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+}
+\newcommand{\tablemat}{~}
+
+%%%%%%%%%%%%%%%%% TITRE %%%%%%%%%%%%%%%%
+% Complétez et décommentez les définitions de macros suivantes :
+\newcommand{\intitule}{Rapport Projet 1}
+\newcommand{\GrNbr}{23}
+\newcommand{\PrenomUN}{Andrew}
+\newcommand{\NomUN}{Willems}
+\newcommand{\PrenomDEUX}{Pierre}
+\newcommand{\NomDEUX}{Lorenzen}
+% Décommentez ceci si vous voulez une table des matières :
+\renewcommand{\tablemat}{\tableofcontents}
+
+%%%%%%%% ZONE PROTÉGÉE : MODIFIEZ UNE DES DIX PROCHAINES %%%%%%%%
+%%%%%%%%            LIGNES POUR PERDRE 2 PTS.            %%%%%%%%
+\title{INFO0947: \intitule}
+\author{Groupe \GrNbr : \PrenomUN~\textsc{\NomUN}, \PrenomDEUX~\textsc{\NomDEUX}}
+\date{}
+\begin{document}
+
+\maketitle
+\newpage
+\tablemat
+\newpage
+%%%%%%%%%%%%%%%%%%%% FIN DE LA ZONE PROTÉGÉE %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%% RAPPORT %%%%%%%%%%%%%%%
+% Écrivez votre rapport ci-dessous.
+
+\section{Description du problème}
+
+Il est demandé de filtrer un tableau d'entiers par rapport à une certaine propriété \textit{p}.
+
+On peut représenter le problème comme suit:
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!h]
+\centering
+\begin{tabular}{lllllllllllll}
+\multicolumn{1}{l|}{}   & 0                        &                          &                          &                          &                          & \multicolumn{1}{r|}{i}                        &                          &                          &                          &                          &                          & \multicolumn{1}{r|}{N-1}                      \\ \cline{2-13} 
+\multicolumn{1}{r|}{T:} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \cellcolor[HTML]{3531FF} & \multicolumn{1}{l|}{\cellcolor[HTML]{3531FF}} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \cellcolor[HTML]{9A0000} & \multicolumn{1}{l|}{\cellcolor[HTML]{9A0000}} \\ \cline{2-13} 
+                        &                          &                          &                          &                          &                          &                                               &                          &                          &                          &                          &                          &                                              
+\end{tabular}
+\end{table}
+
+Avec la zone {\color[HTML]{3531FF}bleu} qui concerne la zone filtrée du tableau(A), la taille de la zone filtrée(B) et tout les éléments qui s'y trouve se trouvait dans le même ordre dans le tableau initiale(C). La zone {\color[HTML]{9A0000} brune} concerne la zone non filtrée ce qui veut dire que la zone est remplie de 0(D).
+
+\section{Découpe en sous-problème}
+
+Pour avoir plus de facilité à résoudre le problème nous pouvons le séparer en 2 sous-problèmes.\\
+Le premier sous-problème étant le problème principal: Filtrer le tableau par rapport à une certaine propriété \textit{p}.
+Les éléments respectant cette propriété sont à l'avant du tableau et dans le même ordre que dans le tableau initiale.
+Les éléments ne respectant pas la propriété sont placé en bout de tableau et leur valuer est mise à 0.\\
+Le deuxième sous-problème est la permutation de 2 éléments d'un même tableau sans changer leur valeur.
+
+\subsection{Relation entre les sous-problème}
+
+\[
+    SP_2 \subset SP_1
+\]
+\section{Sous-problème 2}
+    Nous allons commencer par définir un prédicat avec leur objets utilisés et une notation
+    pour pouvoir décrire ce sous-problème plus facilement.
+
+    \subsection{Spécification du prédicats}
+
+        \begin{enumerate}
+            \item Objets Utilisés
+                \begin{itemize}
+                    \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                    \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                    \item[$\star$] T$_0$: Le tableau T avant modification.
+                \end{itemize}
+
+            \item Signature \\
+                \textit{Permutation(T,N,T$_0$)}
+
+            \item Spécification\\
+                \textit{Permutation(T,N,T$_0$)}$\equiv (\forall i, 1\leq i < N, (\exists j, 0\leq j < N, T_0[j] = T[i])$
+        \end{enumerate}
+
+    \subsection{Objets Utilisés}
+        Ensuite, nous allons décrire les objets utilisés par le sous-problème 2.
+        \begin{itemize}
+            \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+            \item[$\star$] N > 0 ($\in \mathbb{N}$)
+            \item[$\star$] i : est la destination de la valeur à permuter.
+            \item[$\star$] j : est le depart de la valeur à permuter.
+        \end{itemize}
+
+    \subsection{Signature}
+        La signature du sous-problème 2 est la suivante:
+        \begin{lstlisting}
+        void perm(int *T, int const N, int const i, int const j);
+        \end{lstlisting}
+    
+    \subsection{Spécification}
+        Ici, nous décrivons la précondition et la postcondition du sous-problème.
+        \begin{lstlisting}
+        /**
+         * @Précond : (>$ N > 0 \wedge T init \wedge 0 \leq i,j < N $<)
+         * @Postcond :(>$ N = N_0 \wedge Permutation(T,N,T_0)$<)
+         */
+        void perm(int *T, int const N, int const i, int const j);
+        \end{lstlisting}
+    
+    \subsection{Code}
+        Dans cette section, nous écrivons le bout de code correspondant au sous-problème 2 avec ses assertions
+        intermédiaires pour nous assurer la validiter du code.
+        \begin{lstlisting}
+        /**
+        * @Précond : (>$ N > 0 \wedge T init \wedge 0 \leq i,j < N $<)
+        * @Postcond :(>$ N = N_0 \wedge Permutation(T,N,T_0)$<)
+        */
+        void perm(int *T, int const N, int const i, int const j){
+            assert(T != NULL && N > 0);
+            //@Précond (>$\equiv N > 0 \wedge T init \wedge 0 \leq i,j < N$<)
+            int k = T[i];
+            //(>$ N > 0 \wedge T init \wedge 0 \leq i,j < N \wedge k = T_0[i]$<)
+            T[i]=T[j];
+            //(>$ N > 0 \wedge T init \wedge 0 \leq i,j < N \wedge k = T_0[i] \wedge T[i] = T_0[j] \wedge T[j] = k$<)
+            T[j]= k;
+            //(>$ N > 0 \wedge T init \wedge 0 \leq i,j < N \wedge k = T[i] \wedge T[i] = T_0[j] \wedge T[j] = T_0[i]$<)
+            //(>$ N > 0 \wedge T init (\forall i, 1\leq i < N, (\exists j, 0\leq j < N, T_0[j] = T[i])$<)
+            //(>$ N = N_0 \wedge Permutation(T,N,T_0)$<)
+            // Postcond
+        }    
+        \end{lstlisting}
+
+\section{Sous-problème 1}
+    Nous allons commencer par définir quelques prédicats avec leur objets utilisés et quelque notations 
+    pour pouvoir décrire ce sous-problème plus facilement.
+
+    \subsection{Spécification des prédicats}
+
+        \subsubsection{Spécification du prédicat B}
+
+        \begin{enumerate}
+            \item Objets Utilisés
+                \begin{itemize}
+                    \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                    \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                    \item[$\star$] p: Une certaine propriété. 
+                \end{itemize}
+
+            \item Signature \\
+                \textit{TailleZoneFiltree(T,N,p)}
+
+            \item Spécification\\
+                \textit{TailleZoneFiltree(T,N,p)}$\equiv \# i, 0\leq i < N, p(T[i])$
+        \end{enumerate}
+
+        \subsubsection{Spécification du prédicat A}
+
+        \begin{enumerate}
+            \item Objets Utilisés
+                \begin{itemize}
+                    \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                    \item[$\star$] taille: taille de la zone filtrée.
+                    \item[$\star$] p: Une certaine propriété. 
+                \end{itemize}
+
+            \item Signature \\
+                \textit{ZoneFiltree(T,p,taille)}
+
+            \item Spécification\\
+                \textit{ZoneFiltree(T,p,taille)}$\equiv \forall i, 0\leq i < taille, p(T[i])$
+        \end{enumerate}
+
+        \subsubsection{Spécification du prédicat C}
+
+        \begin{enumerate}
+            \item Objets Utilisés
+                \begin{itemize}
+                    \item[$\star$] T$_0$: Le tableau T avant modification.
+                    \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                    \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                    \item[$\star$] taille: taille de la zone filtrée. 
+                \end{itemize}
+
+            \item Signature \\
+                \textit{LienTableau(T$_0$,T,N,taille)}
+
+            \item Spécification\\
+                \textit{LienTableau(T$_0$,T,N,taille)}$\equiv (\forall i, 1\leq i < taille, (\exists j, 0\leq j < N, T_0[j] = T[i]) \wedge (\exists k, 0\leq k < j, T_0[k] = T[i-1]) )$
+        \end{enumerate}
+
+        \subsubsection{Spécification du prédicat D}
+
+        \begin{enumerate}
+            \item Objets Utilisés
+                \begin{itemize}
+                    \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                    \item[$\star$] N > 0 ($\in \mathbb{N}$)
+                    \item[$\star$] taille: taille de la zone filtrée. 
+                \end{itemize}
+
+            \item Signature \\
+                \textit{ZoneNonFiltree(T,N,taille)}
+
+            \item Spécification\\
+                \textit{ZoneNonFiltree(T,N,taille)}$\equiv \forall i, taille < i < N, T[i]=0$
+        \end{enumerate}
+
+    \subsection{Objets utilisés}
+        Ensuite, nous allons décrire les objets utilisés par le sous-problème 1.
+            \begin{itemize}
+                \item[$\star$] T: Un tableau d'entier initialisé de taille N.
+                \item[$\star$] N > 0 ($\in \mathbb{N}$)
+            \end{itemize}
+
+    \subsection{Signature}
+        La signature du sous-problème 1 est la suivante:
+        \begin{lstlisting}
+        int filtrer(int*T, const int N);
+        \end{lstlisting}
+        
+    \subsection{Spécification}
+        Ici, nous décrivons la précondition et la postcondition du sous-problème.
+        \begin{lstlisting}
+        /**
+         * @Précond : (>$ N > 0 \wedge T init $<)
+         * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
+         */
+        int filtrer(int*T, const int N);
+        \end{lstlisting}
+
+    \subsection{Invariant}
+        Vu que ce sous-problème contient une boucle, il nous faut avoir un invariant graphique et formel.
+        \subsubsection{Invariant graphique}
+
+        Avec la spécification des prédicats ci dessus on peut trouver un invariant graphique.
+        
+        \begin{table}[!h]
+        \centering
+        \begin{tabular}{llllrllllllllr}
+        \multicolumn{1}{l|}{}   & \multicolumn{3}{l}{0}                                                                    & \multicolumn{1}{r|}{}                       & place                    & \multicolumn{6}{l|}{}                                                & i                 & \multicolumn{1}{r|}{N-1}                \\ \cline{2-5} \cline{7-14} 
+        \multicolumn{1}{r|}{T:} & \multicolumn{4}{l}{\cellcolor[HTML]{32CB00}}                                                                                           & \cellcolor[HTML]{3531FF} & \multicolumn{6}{l|}{\cellcolor[HTML]{3531FF}}                        & \multicolumn{2}{l}{\cellcolor[HTML]{9A0000}}                \\ \cline{2-5} \cline{7-14} 
+                                & \multicolumn{4}{l}{{\color[HTML]{32CB00} \begin{tabular}[c]{@{}l@{}}ZoneFiltree(T,p,place) \\ LienTableau(T0,T,i,place)\end{tabular}}} &                          & \multicolumn{6}{l}{{\color[HTML]{3531FF} ZoneNonFiltree(T,i,place)}} & \multicolumn{2}{l}{{\color[HTML]{9A0000} encore à traiter}}
+        \end{tabular}
+        \end{table}
+
+        Avec $place = TailleZoneFiltree(T,i,p)$.
+
+        \subsubsection{Invariant formel}
+
+        De l'invariant graphique on peut en dériver l'invariant formel:
+
+        $\textsc{Inv} \equiv \, N = N_0 \, \wedge \, 0 \leq i \leq N-1 \, \wedge  \,place = TailleZoneFiltree(T,i,p) \, \wedge \, ZoneFiltree(T,p,place) \, \wedge \, LienTableau(T_0,T,i,place) \, \wedge \, ZoneNon Filtree(T,i,place)$
+    \subsection{Initialisation}
+        L'initialisation avant l'entrée dans la boucle est la suivante:
+        \begin{lstlisting}
+        i = 0;
+        taille = 0;
+        \end{lstlisting}
+    \subsection{Gardien de boucle}
+        Grâce à l'invariant formel on peut trouver le gardien de boucle.
+        \[
+            \neg B \equiv i \geq N
+        \]
+    \subsection{Corps de boucle}
+        Dans le corps de la boucle il y a 3 étapes: la progression, la fonction de terminaison et la conclusion. On va
+        détailler ces étapes ci-dessous.
+
+        \subsubsection{Progression}
+            Pour la progression, il faut se demander ce qu'il faut faire dans la boucle pour arriver à la post condition.
+            \begin{lstlisting}
+                if(test(T[i])){
+                    perm(T,N,i,taille);
+                    taille++;
+                    i++;
+                }
+                else{
+                    T[i] = 0;
+                    i++;
+                }
+
+            \end{lstlisting}
+        
+        \subsubsection{Fonction de terminaison}
+            Pour la fonction de terminaison, on doit se demander pour quelle valeur de i on sort de la boucle.
+            \[
+                F = N-i
+            \]
+        
+        \subsubsection{Conclusion}
+            Pour la conlusion, on doit se demander ce qu'il reste à faire après être sorti de la boucle. ce qui veut dire:
+            \[
+                Inv \wedge \neg B ?\equiv Post
+            \]
+            Si on regarde l'invariant formel si on mei i qui est égale à N on à bien la postcondition.
+
+    \subsection{Code}
+        Dans cette section, nous écrivons le bout de code correspondant au sous-problème 1 avec ses assertions
+        intermédiaires pour nous assurer la validiter du code.
+        \begin{lstlisting}
+        /**
+         * @Précond : (>$ N > 0 \wedge T init $<)
+         * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
+         */
+        int filtrer(int*T, const int N){
+            assert(T != NULL && N > 0);
+            //@Précond (>$\equiv N > 0 \wedge T init$<)
+            int i = 0;
+            int taille = 0;
+            //(>$ N > 0 \wedge T init \wedge i = 0 \wedge taille = 0$<)
+            //(>$ N > 0 \wedge T init \wedge i = 0 \wedge taille = TailleZoneFiltree(T,i,p)$<)
+            while(i < N){
+                //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i,p)$<)
+                if(test(T[i])){
+                    perm(T,N,i,taille);
+                    //(>$ N > 0 \wedge T init \wedge i < N \wedge taille-1 = TailleZoneFiltree(T,i-1,p)\wedge ZoneFiltree(T,p,taille-1) \wedge LienTableau(T_0,T,i-1,taille-1) \wedge ZoneNonFiltree(T,N,taille-1)$<)
+                    taille++;
+                    i++;
+                    //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i,p)\wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+                }
+                else{
+                    T[i] = 0;
+                    //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i-1,p)\wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,i-1,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+                    i++;
+                    //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+                }
+            }
+            //(>$ N > 0 \wedge T init \wedge i = N \wedge taille = TailleZoneFiltree(T,i,p)\wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+            //(>$ N > 0 \wedge T init \wedge taille = TailleZoneFiltree(T,N,p)\wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+            //Postcond
+        }    
+        \end{lstlisting}
+\section{Code Complet}
+    Après avoir fait le code de chauqe sous-problème, il ne reste qu'a les mettre ensemble pour avoir le code complet 
+    comme ci-dessous:
+    \begin{lstlisting}
+        void perm(int *T, int const N, int const i, int const j){
+            assert(T != NULL && N > 0);
+            int k = T[i];
+            T[i]=T[j];
+            T[j]= k;
+        }
+
+        int filtrer(int*T, const int N){
+            assert(T != NULL && N > 0);
+            int i = 0;
+            int taille = 0;
+
+            while(i < N){
+                if(test(T[i])){
+                    perm(T,N,i,taille);
+                    taille++;
+                    i++;
+                }
+                else{
+                    T[i] = 0;
+                    i++;
+                }
+            }
+        }    
+        \end{lstlisting}
+\end{document}
