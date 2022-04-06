@@ -134,21 +134,20 @@
     Nous allons commencer par définir un prédicat avec leur objets utilisés et une notation
     pour pouvoir décrire ce sous-problème plus facilement.
 
-    \subsection{Spécification du prédicats}
+    \subsection{Spécification du prédicat}
 
         \begin{enumerate}
             \item Objets Utilisés
                 \begin{itemize}
                     \item[$\star$] T: Un tableau d'entier initialisé de taille N.
                     \item[$\star$] N > 0 ($\in \mathbb{N}$)
-                    \item[$\star$] T$_0$: Le tableau T avant modification.
                 \end{itemize}
 
             \item Signature \\
-                \textit{Permutation(T,N,T$_0$)}
+                \textit{Permutation(T,N)}
 
             \item Spécification\\
-                \textit{Permutation(T,N,T$_0$)}$\equiv (\forall i, 1\leq i < N, (\exists j, 0\leq j < N, T_0[j] = T[i])$
+                \textit{Permutation(T,N)}$\equiv (\forall i, 1\leq i < N, (\exists j, 0\leq j < N, T_0[j] = T[i])$
         \end{enumerate}
 
     \subsection{Objets Utilisés}
@@ -182,7 +181,7 @@
         \begin{lstlisting}
         /**
         * @Précond : (>$ N > 0 \wedge T init \wedge 0 \leq i,j < N $<)
-        * @Postcond :(>$ N = N_0 \wedge Permutation(T,N,T_0)$<)
+        * @Postcond :(>$ N = N_0 \wedge Permutation(T,N)$<)
         */
         void perm(int *T, int const N, int const i, int const j){
             assert(T != NULL && N > 0);
@@ -194,7 +193,7 @@
             T[j]= k;
             //(>$ N > 0 \wedge T init \wedge 0 \leq i,j < N \wedge k = T[i] \wedge T[i] = T_0[j] \wedge T[j] = T_0[i]$<)
             //(>$ N > 0 \wedge T init (\forall i, 1\leq i < N, (\exists j, 0\leq j < N, T_0[j] = T[i])$<)
-            //(>$ N = N_0 \wedge Permutation(T,N,T_0)$<)
+            //(>$ N = N_0 \wedge Permutation(T,N)$<)
             // Postcond
         }    
         \end{lstlisting}
@@ -205,7 +204,7 @@
 
     \subsection{Spécification des prédicats}
 
-        \subsubsection{Spécification du prédicat B}
+        \subsubsection{Prédicat B}
 
         \begin{enumerate}
             \item Objets Utilisés
@@ -219,10 +218,10 @@
                 \textit{TailleZoneFiltree(T,N,p)}
 
             \item Spécification\\
-                \textit{TailleZoneFiltree(T,N,p)}$\equiv \# i, 0\leq i < N, p(T[i])$
+                \textit{TailleZoneFiltree(T,N)}$\equiv \# i, 0\leq i < N, p(T$_0$[i])$
         \end{enumerate}
 
-        \subsubsection{Spécification du prédicat A}
+        \subsubsection{Prédicat A}
 
         \begin{enumerate}
             \item Objets Utilisés
@@ -236,10 +235,10 @@
                 \textit{ZoneFiltree(T,p,taille)}
 
             \item Spécification\\
-                \textit{ZoneFiltree(T,p,taille)}$\equiv \forall i, 0\leq i < taille, p(T[i])$
+                \textit{ZoneFiltree(T,N)}$\equiv \forall i, 0\leq i < taille, p(T[i])$
         \end{enumerate}
 
-        \subsubsection{Spécification du prédicat C}
+        \subsubsection{Prédicat C}
 
         \begin{enumerate}
             \item Objets Utilisés
@@ -251,13 +250,13 @@
                 \end{itemize}
 
             \item Signature \\
-                \textit{LienTableau(T$_0$,T,N,taille)}
+                \textit{LienTableau(,T,N,taille)}
 
             \item Spécification\\
-                \textit{LienTableau(T$_0$,T,N,taille)}$\equiv (\forall i, 1\leq i < taille, (\exists j, 0\leq j < N, T_0[j] = T[i]) \wedge (\exists k, 0\leq k < j, T_0[k] = T[i-1]) )$
+                \textit{LienTableau(T,N,taille)}$\equiv (\forall i, 0\leq i < taille, (\exists j, 0\leq j < N, T_0[j] = T[i]) \wedge (\exists k, 0\leq k < j, T_0[k] = T[i-1]) )$
         \end{enumerate}
 
-        \subsubsection{Spécification du prédicat D}
+        \subsubsection{Prédicat D}
 
         \begin{enumerate}
             \item Objets Utilisés
@@ -271,7 +270,7 @@
                 \textit{ZoneNonFiltree(T,N,taille)}
 
             \item Spécification\\
-                \textit{ZoneNonFiltree(T,N,taille)}$\equiv \forall i, taille < i < N, T[i]=0$
+                \textit{ZoneNonFiltree(T,N,taille)}$\equiv \forall i, taille    \leq  i < N, T[i]=0$
         \end{enumerate}
 
     \subsection{Objets utilisés}
@@ -291,9 +290,9 @@
         Ici, nous décrivons la précondition et la postcondition du sous-problème.
         \begin{lstlisting}
         /**
-         * @Précond : (>$ N > 0 \wedge T init $<)
-         * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
-         */
+            * @Précond : (>$ N > 0 \wedge T init $<)
+            * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
+            */
         int filtrer(int*T, const int N);
         \end{lstlisting}
 
@@ -318,7 +317,7 @@
 
         De l'invariant graphique on peut en dériver l'invariant formel:
 
-        $\textsc{Inv} \equiv \, N = N_0 \, \wedge \, 0 \leq i \leq N-1 \, \wedge  \,place = TailleZoneFiltree(T,i,p) \, \wedge \, ZoneFiltree(T,p,place) \, \wedge \, LienTableau(T_0,T,i,place) \, \wedge \, ZoneNon Filtree(T,i,place)$
+        $\textsc{Inv} \equiv \, N = N_0 \, \wedge \, 0 \leq i \leq N-1 \, \wedge  \,place = TailleZoneFiltree(T,i) \, \wedge \, ZoneFiltree(T,place) \, \wedge \, LienTableau(T,i,place) \, \wedge \, ZoneNon Filtree(T,i,place)$
     \subsection{Initialisation}
         L'initialisation avant l'entrée dans la boucle est la suivante:
         \begin{lstlisting}
@@ -367,9 +366,9 @@
         intermédiaires pour nous assurer la validiter du code.
         \begin{lstlisting}
         /**
-         * @Précond : (>$ N > 0 \wedge T init $<)
-         * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
-         */
+            * @Précond : (>$ N > 0 \wedge T init $<)
+            * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N,p) \wedge ZoneFiltree(T,p,taille) \wedge LienTableau(T_0,T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
+            */
         int filtrer(int*T, const int N){
             assert(T != NULL && N > 0);
             //@Précond (>$\equiv N > 0 \wedge T init$<)
@@ -398,6 +397,41 @@
             //Postcond
         }    
         \end{lstlisting}
+    Dans cette section, nous écrivons le bout de code correspondant au sous-problème 1 avec ses assertions
+    intermédiaires pour nous assurer la validiter du code.
+    \begin{lstlisting}
+    /**
+        * @Précond : (>$ N > 0 \wedge T init $<)
+        * @Postcond :(>$ N = N_0 \wedge taille = TailleZoneFiltree(T,N) \wedge ZoneFiltree(T,taille) \wedge LienTableau(T,N,taille) \wedge ZoneNonFiltree(T,N,taille) $<)
+        */
+    int filtrer(int*T, const int N){
+        assert(T != NULL && N > 0);
+        //@Précond (>$\equiv N > 0 \wedge T init$<)
+        int i = 0;
+        int taille = 0;
+        //(>$ N > 0 \wedge T init \wedge i = 0 \wedge taille = 0$<)
+        //(>$ N > 0 \wedge T init \wedge i = 0 \wedge taille = TailleZoneFiltree(T,i)$<)
+        while(i < N){
+            //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i)$<)
+            if(test(T[i])){
+                perm(T,N,i,taille);
+                //(>$ N > 0 \wedge T init \wedge i < N \wedge taille-1 = TailleZoneFiltree(T,i-1)\wedge ZoneFiltree(T,taille-1) \wedge LienTableau(T,i-1,taille-1) \wedge ZoneNonFiltree(T,N,taille-1)$<)
+                taille++;
+                i++;
+                //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i)\wedge ZoneFiltree(T,taille) \wedge LienTableau(T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+            }
+            else{
+                T[i] = 0;
+                //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i-1)\wedge ZoneFiltree(T,taille) \wedge LienTableau(T,i-1,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+                i++;
+                //(>$ N > 0 \wedge T init \wedge i < N \wedge taille = TailleZoneFiltree(T,i) \wedge ZoneFiltree(T,taille) \wedge LienTableau(T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+            }
+        }
+        //(>$ N > 0 \wedge T init \wedge i = N \wedge taille = TailleZoneFiltree(T,i)\wedge ZoneFiltree(T,taille) \wedge LienTableau(T,i,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+        //(>$ N > 0 \wedge T init \wedge taille = TailleZoneFiltree(T,N)\wedge ZoneFiltree(T,taille) \wedge LienTableau(T,N,taille) \wedge ZoneNonFiltree(T,N,taille)$<)
+        //Postcond
+    }    
+    \end{lstlisting}
 \section{Code Complet}
     Après avoir fait le code de chauqe sous-problème, il ne reste qu'a les mettre ensemble pour avoir le code complet 
     comme ci-dessous:

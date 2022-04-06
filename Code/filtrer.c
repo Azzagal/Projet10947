@@ -1,6 +1,7 @@
 #include"filtrer.h"
 #include"assert.h"
 #include<stdlib.h>
+#include"propriete.h"
 
 static void perm(int *T, int const N, int const i, int const j){
     assert(T != NULL && N > 0);
@@ -25,4 +26,5 @@ int filtrer(int*T, const int N){
             i++;
         }
     }
+    return 0;
 }
